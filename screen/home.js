@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Alert } fr
 import axios from 'axios';
 
 const apiheader = process.env.EXPO_PUBLIC_apiURI;
-const LoginScreen = ({ navigation }) => {
-    const Register = () => {
+const Home = ({ navigation }) => {
+  const Register = () => {
     navigation.navigate('RegistrationForm');
   };
   const Settime = () => {
@@ -14,9 +14,6 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.squarebackground}>
-        <View style={styles.circlebackground}>
-          <Text style={styles.title}>Home</Text>
-        </View>
         <View style={styles.item}>
           <Text style={styles.additem}>+</Text>
         </View>
@@ -28,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.time} onPress={Settime}>
           <Text style={styles.buttonText}>Set Time</Text>
         </TouchableOpacity>
-        
+
       </View>
     </View>
   );
@@ -44,10 +41,9 @@ const styles = StyleSheet.create({
   },
 
   squarebackground: {
-    width: '90%',
-    borderRadius: 30,
+    width: '100%',
+    height:'100%',
     backgroundColor: '#FFFFFF',
-    marginTop:'25%',
   },
 
   circlebackground: {
@@ -61,28 +57,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#8FDEFF',
   },
 
-  title: {
-    fontSize: 30,
-    marginBottom: 30,
-    position: 'absolute',
-    alignSelf: 'center',
-  },
-
-  item:{
+  item: {
     width: 100,
     height: 100,
     borderRadius: 100,
-    marginTop:'20%',
-    marginLeft:'7%',
+    marginTop: '20%',
+    marginLeft: '7%',
     backgroundColor: '#B3B3B3',
   },
 
   line: {
     width: '90%',
-    height: '1%',
-    backgroundColor: '#545454',
+    height: 3,
+    backgroundColor: '#000000',
     alignSelf: 'center',
-    borderRadius: 10,
+    borderRadius: 100,
     marginTop: '50%',
   },
   Start: {
@@ -92,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: '#00FF47',
+    backgroundColor: '#8BE79A',
     alignSelf: 'center',
     marginTop: '7%',
   },
@@ -110,16 +99,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#9DF9FF',
     alignSelf: 'center',
     marginTop: 25,
-    marginBottom:'7%',
+    marginBottom: '7%',
   },
 
-  additem:{
+  additem: {
     alignSelf: 'center',
     position: 'absolute',
-    fontSize:70,
-    
+    fontSize: 70,
+
   }
 
 });
 
-export default LoginScreen;
+export default Home;

@@ -6,6 +6,8 @@ const apiheader = process.env.EXPO_PUBLIC_apiURI;
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [usernameNotFound, setUsernameNotFound] = useState(false);
+  const [passwordNotFound, setPasswordNotFound] = useState(false);
 
   const Register = () => {
     navigation.navigate('RegistrationForm');
@@ -26,11 +28,19 @@ const LoginScreen = ({ navigation }) => {
     };
     try {
       const response = await axios.post(apiheader + '/Login/auth', credentials);
-      const result = await response.data;
-      console.log(result)
-      navigation.navigate('HomeScreen');
+      console.log(response.data);
+      if (response.data.status == "auth success") {
+        const result = await response.data;
+        console.log(result)
+        navigation.navigate('Home');
+      } else {
+        setUsernameNotFound(true);
+        setPasswordNotFound(true);
+    }
     } catch (error) {
       console.error(error);
+      setUsernameNotFound(true);
+      setPasswordNotFound(true);
     }
   };
 
@@ -42,19 +52,30 @@ const LoginScreen = ({ navigation }) => {
         </View>
         <Text style={styles.UsernameText}>Username</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, usernameNotFound && styles.inputError]}
           placeholder="Username :"
-          onChangeText={setUsername}
+          onChangeText={(text) => {
+            setUsername(text);
+            setUsernameNotFound(false);
+          }}
           value={username}
         />
         <Text style={styles.PasswordText}>Password</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, passwordNotFound && styles.inputError]}
           placeholder="Password :"
-          secureTextEntry
-          onChangeText={setPassword}
+          // secureTextEntry
+          onChangeText={(text) => {
+            setPassword(text);
+            setPasswordNotFound(false);
+          }}
           value={password}
         />
+
+        
+        <View style={styles.errorText}>
+        {passwordNotFound && usernameNotFound && <Text style={styles.errorText}>ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง</Text>}
+        </View>
 
         <View style={styles.line}></View>
         <TouchableOpacity style={styles.registerPassword} onPress={Forgot}>
@@ -170,6 +191,14 @@ const styles = StyleSheet.create({
     color: 'blue',
     marginBottom: 15,
   },
+
+  errorText:{
+    fontSize: 18,
+    alignSelf: 'center',
+    color: 'red',
+    marginTop:6,
+  },
+
 });
 
 export default LoginScreen;

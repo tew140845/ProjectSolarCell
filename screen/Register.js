@@ -31,7 +31,7 @@ const RegistrationForm = ({navigation}) => {
         const result = await response.json();
         console.log(result);
 
-        navigation.navigate('LoginScreen');
+        navigation.navigate('Login');
         Alert.alert('', 'สมัครเสร็จสิ้น', [{ text: 'OK', onPress: () => {} }]);
       } catch (error) {
         console.error(error);

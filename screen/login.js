@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Alert, ToastAndroid} from 'react-native';
 import axios from 'axios';
+import { useFocusEffect, StackActions } from '@react-navigation/native';
+import * as SecureStore from 'expo-secure-store'
 
 const apiheader = process.env.EXPO_PUBLIC_apiURI;
 const LoginScreen = ({ navigation }) => {
@@ -28,7 +30,15 @@ const LoginScreen = ({ navigation }) => {
       const response = await axios.post(apiheader + '/Login/auth', credentials);
       const result = await response.data;
       console.log(result)
-      navigation.navigate('HomeScreen');
+      if (result.status == "auth failed") {
+        console.log("auth did fail")
+    } if (result.status == "auth success") {
+        await SecureStore.setItemAsync('userAuth', JSON.stringify(result.obj));
+        navigation.dispatch(StackActions.replace('Tabs'));
+
+
+
+    }
     } catch (error) {
       console.error(error);
     }

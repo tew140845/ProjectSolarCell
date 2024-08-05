@@ -10,10 +10,6 @@ const SetTime = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.squarebackground}>
-        <View style={styles.circlebackground}>
-          <Text style={styles.title}>Time</Text>
-        </View>
-
         <TouchableOpacity style={styles.number}>
           <Text style={styles.timeText}>00 : 00</Text>
         </TouchableOpacity>
@@ -38,28 +34,9 @@ const styles = StyleSheet.create({
   },
 
   squarebackground: {
-    width: '90%',
-    borderRadius: 30,
+    width: '100%',
+    height: '100%',
     backgroundColor: '#FFFFFF',
-    marginTop: '25%',
-  },
-
-  circlebackground: {
-    width: 125,
-    height: 125,
-    borderRadius: 100,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    marginTop: -65,
-    backgroundColor: '#8FDEFF',
-  },
-
-  title: {
-    fontSize: 30,
-    marginBottom: 30,
-    position: 'absolute',
-    alignSelf: 'center',
   },
 
   line: {
@@ -70,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: '40%',
   },
-  
+
   buttonText: {
     fontSize: 30,
     alignSelf: 'center',

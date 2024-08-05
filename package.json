@@ -14,12 +14,15 @@
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "expo": "^51.0.24",
+    "expo-dev-client": "^4.0.21",
     "expo-status-bar": "~1.12.1",
     "mongodb": "^6.4.0",
     "npm": "^10.8.2",
     "react": "18.2.0",
     "react-native": "0.74.3",
-    "react-native-gesture-handler": "~2.16.1"
+    "react-native-gesture-handler": "~2.16.1",
+    "typescript": "~5.3.3",
+    "@types/react": "~18.2.79"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

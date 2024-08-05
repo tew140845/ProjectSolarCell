@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity ,Alert} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 
 const apiheader = process.env.EXPO_PUBLIC_apiURI;
-const RegistrationForm = ({navigation}) => {
+const RegistrationForm = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [Confirmpassword, setConfirmpassword] = useState('');
   const [Email, setEmail] = useState('');
   const [Phone, setPhone] = useState('');
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
 
   const fetchaddUser = async () => {
     if (password !== Confirmpassword) {
-      Alert.alert('', 'รหัสผ่านไม่ตรงกัน', [{ text: 'OK', onPress: () => {} }]);
+      Alert.alert('', 'รหัสผ่านไม่ตรงกัน', [{ text: 'OK', onPress: () => { } }]);
     } else {
       console.log('User registered successfully');
       console.log('Username: ', username);
@@ -38,7 +39,18 @@ const RegistrationForm = ({navigation}) => {
       }
     }
   };
-  
+  const validatePhoneNumber = (text) => {
+    const isValid = /^\d+$/.test(text); // Regular expression to check if input is numeric
+    setIsPhoneNumberValid(isValid);
+    return isValid;
+  };
+
+  const handleTextChange = (text) => {
+    const numericText = text.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+    setPhone(numericText);
+    validatePhoneNumber(numericText);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.squarebackground}>
@@ -83,8 +95,10 @@ const RegistrationForm = ({navigation}) => {
         <TextInput
           style={styles.input}
           placeholder="Phone :"
-          onChangeText={text => setPhone(text)}
           value={Phone}
+          keyboardType="numeric"
+          onChangeText={handleTextChange}
+          maxLength={10}
         />
 
         <View style={styles.line}></View>

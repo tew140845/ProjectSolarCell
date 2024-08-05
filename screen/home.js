@@ -11,9 +11,9 @@ import {
 import axios from "axios";
 
 const apiheader = process.env.EXPO_PUBLIC_apiURI;
-const LoginScreen = ({ navigation }) => {
+const Home = ({ navigation }) => {
   const Register = () => {
-    navigation.navigate("RegistrationForm");
+    navigation.navigate('RegistrationForm');
   };
   const Settime = () => {
     navigation.navigate("Settime");
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "#FFFFFF",
     marginTop: "25%",
+
   },
 
   circlebackground: {
@@ -92,6 +93,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     marginTop: "50%",
+
   },
   Start: {
     width: "40%",
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#00FF47",
     alignSelf: "center",
     marginTop: "7%",
+
   },
   buttonText: {
     fontSize: 25,
@@ -128,4 +131,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Home;
+
